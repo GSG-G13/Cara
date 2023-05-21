@@ -36,7 +36,6 @@ const dbBuilder = () => {
 
        ${products}
        `;
-    console.log(sql);
   } else if (process.env.NODE_ENV === 'production') {
     sql = readFileSync(join(__dirname, 'build.sql'), {
       encoding: 'utf8',
