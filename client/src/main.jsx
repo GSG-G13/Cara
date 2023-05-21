@@ -1,9 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import Root from './componets/root.jsx';
-import HomeComponets from './componets/homecomponets';
-import ProductDetails from './componets/productdetails.jsx';
-import Cart from './componets/cart.jsx';
+import Root from './components/root.jsx';
+import HomeComponets from './components/homecomponets';
+import ProductDetails from './components/productdetails.jsx';
+import Cart from './components/cart.jsx';
 //import Login from './componets/auth/login.jsx';
 //import Signup from './componets/auth/signup.jsx';
 
