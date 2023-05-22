@@ -15,7 +15,7 @@ const getProductQuery = (productId) => dbConnection.query(
   FROM products
   JOIN categories ON products.category_id = categories.id
   WHERE products.id = $1`,
-  [productId]
+  [productId],
 );
 
 module.exports = getProductQuery;

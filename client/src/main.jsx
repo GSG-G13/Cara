@@ -5,10 +5,9 @@ import HomeComponets from './components/homecomponets';
 import ProductDetails, {
   loader as productLoader,
 } from './components/productdetails.jsx';
-import ProductsComponent, {
-  loader as productsLoader,
-} from './components/products/products.jsx';
+import ProductsComponent from './components/products/products.jsx';
 import Cart from './components/cart.jsx';
+import FilterComponent from './components/products/filter.jsx';
 //import Login from './componets/auth/login.jsx';
 //import Signup from './componets/auth/signup.jsx';
 
@@ -33,7 +32,7 @@ const router = createBrowserRouter([
       {
         path: '/products',
         element: <ProductsComponent />,
-        loader: productsLoader,
+        children: [{ index: true, element: <FilterComponent /> }],
       },
       {
         path: '/cart',
