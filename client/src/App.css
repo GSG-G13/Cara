@@ -268,7 +268,8 @@ body {
 
 #product1 .product img {
   width: 100%;
-  border-radius: 20px;
+  border-radius: 20px;   
+  height: 190px;
 }
 
 #product1 .product .description {
