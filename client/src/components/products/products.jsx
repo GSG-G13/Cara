@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, Link } from 'react-router-dom';
 
 export async function loader() {
   const products = await axios.get('/api/v1/products');
@@ -12,7 +12,7 @@ const ProductComponent = () => {
   const { products } = useLoaderData();
   const productsDiv = products.data.data.map((product) => (
     <div className="product" key={product.id}>
-      <a href="">
+      <Link to={'/product/' + product.id}>
         <img src={product.image} alt={product.name} />
         <div className="description">
           <span>{product.description}</span>
@@ -26,10 +26,10 @@ const ProductComponent = () => {
           </div>
           <h4>${product.price}</h4>
         </div>
-      </a>
-      <a href="#">
+      </Link>
+      <Link to="#">
         <i className="fa-solid fa-shopping-cart cart"></i>
-      </a>
+      </Link>
     </div>
   ));
   return (
