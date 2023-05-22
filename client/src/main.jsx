@@ -2,7 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import Root from './components/root.jsx';
 import HomeComponets from './components/homecomponets';
-import ProductDetails from './components/productdetails.jsx';
+import ProductDetails, {
+  loader as productLoader,
+} from './components/productdetails.jsx';
 import ProductsComponent, {
   loader as productsLoader,
 } from './components/products/products.jsx';
@@ -26,6 +28,7 @@ const router = createBrowserRouter([
       {
         path: '/product/:id',
         element: <ProductDetails />,
+        loader: productLoader,
       },
       {
         path: '/products',
