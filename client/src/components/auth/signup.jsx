@@ -1,30 +1,42 @@
 /* eslint-disable react/no-unescaped-entities */
-import { useFormik } from "formik";
-import * as Yup from "yup";
-import "./auth.css";
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+import './auth.css';
 
 const Signup = () => {
   const formik = useFormik({
     initialValues: {
-      username: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
+      username: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
     },
     validationSchema: Yup.object({
-      username: Yup.string().min(10).required("Username must be filled"),
-      email: Yup.string().email().required("Email is required!"),
+      username: Yup.string().min(10).required('Username must be filled'),
+      email: Yup.string().email().required('Email is required!'),
       password: Yup.string()
-        .min(8, "Password must be more than 8 characters")
-        .required("Password is required"),
+        .min(8, 'Password must be more than 8 characters')
+        .required('Password is required'),
       confirmPassword: Yup.string()
-        .oneOf([Yup.ref("password")], "The fields must match")
-        .required("The confirm password field is required"),
+        .oneOf([Yup.ref('password')], 'The fields must match')
+        .required('The confirm password field is required'),
     }),
-    onSubmit: (values) => {
-      // Handle form submission here
-      console.log(values);
-    },
+    onSubmit: ({ username, password, email }, { resetForm }) =>
+      fetch('api/v1/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password, email }),
+      })
+        .then((response) => response.json(response))
+        .then((data) => {
+          console.log(data);
+          resetForm('');
+        })
+        .catch((error) => {
+          console.error(error);
+        }),
   });
 
   return (
@@ -47,6 +59,7 @@ const Signup = () => {
                 type="text"
                 placeholder="USERNAME"
                 name="username"
+                className="form-button"
                 value={formik.values.username}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
@@ -57,6 +70,7 @@ const Signup = () => {
               <input
                 type="text"
                 placeholder="Email"
+                className="form-button"
                 name="email"
                 value={formik.values.email}
                 onChange={formik.handleChange}
@@ -68,6 +82,7 @@ const Signup = () => {
               <input
                 type="password"
                 placeholder="PASSWORD"
+                className="form-button"
                 name="password"
                 value={formik.values.password}
                 onChange={formik.handleChange}
@@ -79,6 +94,7 @@ const Signup = () => {
               <input
                 type="password"
                 placeholder="CONFIRM PASSWORD"
+                className="form-button"
                 name="confirmPassword"
                 value={formik.values.confirmPassword}
                 onChange={formik.handleChange}
