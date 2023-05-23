@@ -43,6 +43,9 @@ p {
   margin: 15px 0 20px 0;
 }
 
+#root{
+  width: 100%;
+}
 .section-p1 {
   padding: 20px 80px;
 }
@@ -79,7 +82,7 @@ button.whiteBg {
 }
 
 body {
-  width: 100%;
+  width: 100vw;
 }
 
 /* Header Start */

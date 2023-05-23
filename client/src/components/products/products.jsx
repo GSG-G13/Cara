@@ -8,11 +8,6 @@ const ProductComponent = () => {
   const [filter, setFilter] = useState({ ...data });
 
   useEffect(() => {
-    // async function fetchProducts() {
-    //   let response = await axios.get('api/v1/products');
-    //   response = await response.data.data;
-    //   setProduct(response);
-    // }
     async function fetchFilteredProducts() {
       let response = await axios.get(
         `api/v1/products?category=${filter.category}&price=${filter.price}&search=${filter.search}`
@@ -23,7 +18,7 @@ const ProductComponent = () => {
 
     fetchFilteredProducts();
   }, [filter]);
-  
+
   const productsDiv = !products ? (
     <section className="dots-container">
       <div className="dot"></div>
@@ -65,9 +60,8 @@ const ProductComponent = () => {
         <p>Save more with coupons & to 70% off!</p>
       </section>
 
-      <FilterComponent setFilter={setFilter} />
-
       <section id="product1" className="section-p1">
+        <FilterComponent setFilter={setFilter} />
         <div className="product-container">{productsDiv}</div>
       </section>
 
