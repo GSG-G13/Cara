@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useLoaderData } from 'react-router-dom';
 
 export async function loader({ params }) {
-  const response = await axios.get('/api/v1/products/'+ params.id);
+  const response = await axios.get('/api/v1/product/'+ params.id);
   const products = response.data;
   return { products };
 }
