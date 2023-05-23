@@ -46,6 +46,7 @@ p {
 #root{
   width: 100%;
 }
+
 .section-p1 {
   padding: 20px 80px;
 }
@@ -712,6 +713,7 @@ justify-content: space-between;
   border-color:  #ec5525;
 }
  input[type=text],
+ input[type=password],
  select,
  textarea,
  input[type=number] {
