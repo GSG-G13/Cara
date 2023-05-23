@@ -28,9 +28,9 @@ const Root = () => {
             </li>
             <li>{/* <NavLink href="">seller</NavLink> */}</li>
             <li className="bag-cart">
-              <a href="#" id="lg-bag">
+              <Link to="cart" id="lg-bag">
                 <i className="fa-solid fa-bag-shopping  cart-icon"></i>
-              </a>
+              </Link>
               <div className="count">0</div>
             </li>
             <a href="#" id="close">

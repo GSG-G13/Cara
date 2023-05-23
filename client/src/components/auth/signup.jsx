@@ -2,6 +2,7 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import "./auth.css";
+import { Link } from 'react-router-dom';
 
 const Signup = () => {
   const formik = useFormik({
@@ -37,7 +38,7 @@ const Signup = () => {
                 src="https://drive.google.com/u/0/uc?id=16U__U5dJdaTfNGobB_OpwAJ73vM50rPV&export=download"
                 alt=""
               />
-              Return home
+              <Link to= "/">Return home</Link>
             </a>
           </div>
           <div className="contact">

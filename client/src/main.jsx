@@ -6,10 +6,10 @@ import ProductDetails, {
   loader as productLoader,
 } from './components/productdetails.jsx';
 import ProductsComponent from './components/products/products.jsx';
-import Cart from './components/cart.jsx';
+import CartComponent from './components/products/cart.jsx';
 import FilterComponent from './components/products/filter.jsx';
-//import Login from './componets/auth/login.jsx';
-//import Signup from './componets/auth/signup.jsx';
+import Login from './components/auth/login.jsx';
+import Signup from './components/auth/signup.jsx';
 
 import './app.css';
 
@@ -36,18 +36,20 @@ const router = createBrowserRouter([
       },
       {
         path: '/cart',
-        element: <Cart />,
+        element: <CartComponent />,
       },
-      {
-        path: '/login',
-        element: <Cart />,
-      },
-      {
-        path: '/signup',
-        element: <Cart />,
-      },
+      
     ],
   },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/signup",
+    element: <Signup />,
+  }
+
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
