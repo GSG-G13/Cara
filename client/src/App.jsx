@@ -1,8 +1,7 @@
-import react from 'react'
-import './App.css'
+import react from 'react';
+import './App.css';
 import ProductDetails from './componets/productdetails';
 import HomeComponets from './componets/homecomponets';
-
 
 const App = () => {
   return (
@@ -10,7 +9,6 @@ const App = () => {
       {/* Other components and content */}
       <Header />
       <HomeComponets />
-
       <ProductDetails />
       <Footer />
       {/* Other components and content */}
@@ -19,5 +17,3 @@ const App = () => {
 };
 
 export default App;
-
-

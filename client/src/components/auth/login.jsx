@@ -2,24 +2,40 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import "./auth.css";
+import { Link, redirect } from 'react-router-dom';
 
 const Login = () => {
   const formik = useFormik({
     initialValues: {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
     },
     validationSchema: Yup.object({
-      email: Yup.string().email("Invalid email").required("Email is required"),
+      email: Yup.string().email('Invalid email').required('Email is required'),
       password: Yup.string()
-        .min(6, "Password must be at least 6 characters")
-        .required("Password is required"),
+        .min(6, 'Password must be at least 6 characters')
+        .required('Password is required'),
     }),
-    onSubmit: (e) => {
-      // Handle form submission here
-      e.preventDefault();
+    onSubmit: ({ email, password }, { resetForm }) => {
+      fetch('/api/v1/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          resetForm('');
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     },
   });
+
+  console.log("formik", formik);
   return (
     <section className="login">
       <div className="login_box">
@@ -30,7 +46,7 @@ const Login = () => {
                 src="https://drive.google.com/u/0/uc?id=16U__U5dJdaTfNGobB_OpwAJ73vM50rPV&export=download"
                 alt=""
               />
-              Return home
+              <Link to= "/">Return home</Link>
             </a>
           </div>
           <div className="contact">
