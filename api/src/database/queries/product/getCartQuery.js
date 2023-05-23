@@ -3,7 +3,7 @@ const dbConnection = require('../../config/connection');
 const getCartQuery = (userId) => dbConnection.query(
     `SELECT 
       p.id AS product_id,
-      p.name as,
+      p.name,
       p.price,
       p.description,
       p.image,
