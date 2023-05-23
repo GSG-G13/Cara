@@ -1,5 +1,7 @@
 import React from 'react';
 import { Outlet, NavLink, Link } from 'react-router-dom';
+import CartCount from './products/cartCount';
+import UserMenu from './auth/userMenu';
 
 const Root = () => {
   return (
@@ -26,19 +28,14 @@ const Root = () => {
                 Products
               </NavLink>
             </li>
+            <UserMenu />
             <li>{/* <NavLink href="">seller</NavLink> */}</li>
             <li className="bag-cart">
-            
-              <NavLink to="cart" id="lg-bag">
-                <i className={({ isActive }) => (isActive ? 'active fa-solid fa-bag-shopping  cart-icon' : 'fa-solid fa-bag-shopping  cart-icon')}
-></i>
-              </NavLink>
-              <div className="count">0</div>
-            </li>
-            <a href="#" id="close">
-              <i className="fa-solid fa-xmark"></i>
-            </a>
-          </ul>
+            <Link  to="/cart" id="lg-bag"><i className="fa-solid fa-bag-shopping  cart-icon"></i></Link>
+            <CartCount />
+          </li>
+          <Link  to="/cart" id="close"><i className="fa-solid fa-xmark"></i></Link>
+        </ul>
         </div>
         <div id="mobile">
           <a href="cart.html">

@@ -18,32 +18,40 @@ const CartComponent = () => {
     <div>loading...</div>
   ) : (
     products.map((product) => (
-      <div className="product" key={product.id}>
-        <Link to={'/product/' + product.id}>
-          <img src={product.image} alt={product.name} />
-          <div className="description">
-            <span>{product.description}</span>
-            <h5>{product.category}</h5>
-            <div className="star">
-              <i className="fa-solid fa-star"></i>
-              <i className="fa-solid fa-star"></i>
-              <i className="fa-solid fa-star"></i>
-              <i className="fa-solid fa-star"></i>
-              <i className="fa-solid fa-star"></i>
-            </div>
-            <h4>${product.price}</h4>
-          </div>
-        </Link>
-        <Link to="#">
-          <i className="fa-solid fa-shopping-cart cart"></i>
-        </Link>
+
+
+<section id="prodetails" className="section-p1" key={product.id} style={{ borderBottom: "2px solid #ccc" }}>
+      <div className="single-pro-image">
+      <img src={product.image} alt="Product Image" style={{ width: "50%" }} />
+
       </div>
+
+      <div className="single-pro-details">
+        <h4>{product.name}</h4>
+        <h2>{product.price}</h2>
+        <select>
+          <option>Select Size</option>
+          <option>XL</option>
+          <option>XXL</option>
+          <option>Small</option>
+          <option>Large</option>
+        </select>
+        <br />
+        <input type="number" value="1" />
+      </div>
+      
+    </section>
+
+
+   
+
+      
     ))
   );
   return (
     <>
       <section id="page-header">
-        <h2>You Products</h2>
+        <h2>Your Cart</h2>
         <p>Save more with coupons & to 70% off!</p>
       </section>
 
@@ -53,13 +61,7 @@ const CartComponent = () => {
         <div className="product-container">{productsDiv}</div>
       </section>
 
-      <section id="pagination" className="section-p1">
-        <a href="#">1</a>
-        <a href="#">2</a>
-        <a href="#">
-          <i className="fa-solid fa-right-long"></i>
-        </a>
-      </section>
+     
     </>
   );
 };
