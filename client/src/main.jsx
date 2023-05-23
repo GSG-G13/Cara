@@ -7,9 +7,7 @@ import ProductDetails, {
 } from './components/productdetails.jsx';
 import ProductsComponent from './components/products/products.jsx';
 import Cart from './components/cart.jsx';
-import FilterComponent from './components/products/filter.jsx';
-//import Login from './componets/auth/login.jsx';
-//import Signup from './componets/auth/signup.jsx';
+
 
 import './app.css';
 
@@ -32,7 +30,7 @@ const router = createBrowserRouter([
       {
         path: '/products',
         element: <ProductsComponent />,
-        children: [{ index: true, element: <FilterComponent /> }],
+        // children: [{ index: true, element: <FilterComponent /> }],
       },
       {
         path: '/cart',

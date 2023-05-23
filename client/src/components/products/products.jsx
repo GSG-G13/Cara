@@ -1,27 +1,45 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Outlet } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-
+import FilterComponent from './filter';
 const ProductComponent = () => {
   const [products, setProduct] = useState('');
+  let data = { category: '', price: '', search: '' };
+  const [filter, setFilter] = useState({ ...data });
+
   useEffect(() => {
-    async function fetchMyAPI() {
-      let response = await axios.get('api/v1/products');
+    // async function fetchProducts() {
+    //   let response = await axios.get('api/v1/products');
+    //   response = await response.data.data;
+    //   setProduct(response);
+    // }
+    async function fetchFilteredProducts() {
+      let response = await axios.get(
+        `api/v1/products?category=${filter.category}&price=${filter.price}&search=${filter.search}`
+      );
       response = await response.data.data;
       setProduct(response);
     }
-    fetchMyAPI();
-  }, []);
 
+    fetchFilteredProducts();
+  }, [filter]);
+  
   const productsDiv = !products ? (
-    <div>loading...</div>
+    <section className="dots-container">
+      <div className="dot"></div>
+      <div className="dot"></div>
+      <div className="dot"></div>
+      <div className="dot"></div>
+      <div className="dot"></div>
+    </section>
   ) : (
     products.map((product) => (
       <div className="product" key={product.id}>
         <Link to={'/product/' + product.id}>
           <img src={product.image} alt={product.name} />
+
           <div className="description">
+            <h5 className="productName">{product.name}</h5>
             <span>{product.description}</span>
             <h5>{product.category}</h5>
             <div className="star">
@@ -47,7 +65,7 @@ const ProductComponent = () => {
         <p>Save more with coupons & to 70% off!</p>
       </section>
 
-      <Outlet />
+      <FilterComponent setFilter={setFilter} />
 
       <section id="product1" className="section-p1">
         <div className="product-container">{productsDiv}</div>
