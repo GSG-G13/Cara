@@ -1,20 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useLoaderData } from 'react-router-dom';
-
-export async function loader({ params }) {
-  const response = await axios.get('/api/v1/product/'+ params.id);
-  const products = response.data;
-  return { products };
-}
+import { useParams } from 'react-router-dom';
 
 const ProductDetails = () => {
-  const { products } = useLoaderData();
+  const { id } = useParams();
+  const [products, setProducts] = useState(null);
+
+  useEffect(() => {
+    const fetchProductDetails = async () => {
+      const response = await axios.get('/api/v1/product/' + id);
+      const products = response.data;
+      setProducts(products);
+    };
+
+    fetchProductDetails();
+  }, [id]);
+
+  if (!products) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <section id="prodetails" className="section-p1">
-
-     <div className="single-pro-image">
+      <div className="single-pro-image">
         <img src={products.data.image} width="100%" id="MainImg" />
 
         <div className="small-img-group">
@@ -49,7 +57,6 @@ const ProductDetails = () => {
         <h4>Product Details</h4>
         <span>{products.data.description}.</span>
       </div>
-      
     </section>
   );
 };

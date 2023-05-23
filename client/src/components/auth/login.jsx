@@ -34,6 +34,8 @@ const Login = () => {
         });
     },
   });
+
+  console.log("formik", formik);
   return (
     <section className="login">
       <div className="login_box">

@@ -14,13 +14,8 @@
     "formik": "^2.2.9",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-<<<<<<< HEAD
-    "yup": "^1.1.1",
-    "react-router-dom": "^6.11.2"
-=======
     "react-router-dom": "^6.11.2",
     "yup": "^1.1.1"
->>>>>>> e29470ba736c68d21c343b25d5f4d150ba89dd3a
   },
   "devDependencies": {
     "@types/react": "^18.0.28",
