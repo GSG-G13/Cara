@@ -1,7 +1,7 @@
 const dbConnection = require('../../config/connection');
 
-const getProductsQuery = () => dbConnection.query(
-  `Select 
+const getProductQuery = (productId) => dbConnection.query(
+  `SELECT 
     products.id,
     products.name,
     products.price,
@@ -11,7 +11,11 @@ const getProductsQuery = () => dbConnection.query(
     products.isMainProduct,
     products.isMainPage,
     products.isNewArrival,
-    categories.name as category
-    from products join categories on products.category_id = categories.id`,
+    categories.name AS category
+  FROM products
+  JOIN categories ON products.category_id = categories.id
+  WHERE products.id = $1`,
+  [productId],
 );
-module.exports = getProductsQuery;
+
+module.exports = getProductQuery;

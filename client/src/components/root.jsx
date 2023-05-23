@@ -1,10 +1,15 @@
 import React from 'react';
+<<<<<<< HEAD
 // import { Outlet } from "react-router-dom";
+=======
+import { Outlet, NavLink, Link } from 'react-router-dom';
+>>>>>>> e29470ba736c68d21c343b25d5f4d150ba89dd3a
 
 const Root = () => {
   return (
     <>
       <section id="header">
+<<<<<<< HEAD
         <a href="../index.html">
           <img src="../img/logo.png" alt="Logo" />
         </a>
@@ -21,6 +26,30 @@ const Root = () => {
             <li>
               <a href="seller.html">seller</a>
             </li>
+=======
+        <Link to="/">
+          <img src="../img/logo.png" alt="Logo" />
+        </Link>
+        <div>
+          <ul id="navbar">
+            <li>
+              <NavLink
+                to="/"
+                className={({ isActive }) => (isActive ? 'active' : '')}
+              >
+                home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/products"
+                className={({ isActive }) => (isActive ? 'active' : '')}
+              >
+                Products
+              </NavLink>
+            </li>
+            <li>{/* <NavLink href="">seller</NavLink> */}</li>
+>>>>>>> e29470ba736c68d21c343b25d5f4d150ba89dd3a
             <li className="bag-cart">
               <a href="#" id="lg-bag">
                 <i className="fa-solid fa-bag-shopping  cart-icon"></i>
