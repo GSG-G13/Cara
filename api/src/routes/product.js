@@ -2,7 +2,13 @@ const express = require('express');
 
 const productRouter = express.Router();
 
-const { getProducts, getProduct, getArrivals , getFeatured, getCart} = require('../controllers/product');
+const {
+  getProducts,
+  getProduct,
+  getArrivals,
+  getFeatured,
+  getCart,
+} = require('../controllers/product');
 
 productRouter.get('/products', getProducts);
 productRouter.get('/product/:id', getProduct);

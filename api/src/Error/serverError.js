@@ -3,6 +3,7 @@ const CustomError = require('../utils/customError');
 // eslint-disable-next-line no-unused-vars
 const serverError = (err, req, res, next) => {
   const { status, message } = err;
+  console.log(err);
   if (err.name === 'ValidationError') {
     return res.status(400).json({
       error: true,

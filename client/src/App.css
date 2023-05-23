@@ -43,8 +43,11 @@ p {
   margin: 15px 0 20px 0;
 }
 
+#root{
+  width: 100%;
+}
 .section-p1 {
-  padding: 40px 80px;
+  padding: 20px 80px;
 }
 
 .section-m1 {
@@ -79,7 +82,7 @@ button.whiteBg {
 }
 
 body {
-  width: 100%;
+  width: 100vw;
 }
 
 /* Header Start */
@@ -612,6 +615,7 @@ footer .copyright {
   border-radius: 4px;
   text-decoration: none;
   transition: 0.5s ease-in-out;
+  margin: 0px 5px;
 }
 #pagination a:hover {
   background-color: #0a5e4f;
@@ -933,5 +937,61 @@ justify-content: space-between;
   width: 100%;
   display: flex;
   gap: 10px;
-  padding: 10px;
+  padding: 10px 10px 0px 10px;
+}
+.dots-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.dot {
+  height: 20px;
+  width: 20px;
+  margin-right: 10px;
+  border-radius: 10px;
+  background-color: #b3d4fc;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.dot:last-child {
+  margin-right: 0;
+}
+
+.dot:nth-child(1) {
+  animation-delay: -0.3s;
+}
+
+.dot:nth-child(2) {
+  animation-delay: -0.1s;
+}
+
+.dot:nth-child(3) {
+  animation-delay: 0.1s;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.8);
+    background-color: #b3d4fc;
+    box-shadow: 0 0 0 0 rgba(178, 212, 252, 0.7);
+  }
+
+  50% {
+    transform: scale(1.2);
+    background-color: #6793fb;
+    box-shadow: 0 0 0 10px rgba(178, 212, 252, 0);
+  }
+
+  100% {
+    transform: scale(0.8);
+    background-color: #b3d4fc;
+    box-shadow: 0 0 0 0 rgba(178, 212, 252, 0.7);
+  }
+}
+.productName{
+  padding: 10px 0;
+
 }
