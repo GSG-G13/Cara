@@ -4,7 +4,6 @@ import Cookies from 'js-cookie';
 const UserMenu = () => {
   // Check if user is logged in based on token presence in cookies
   const token = Cookies.get('token');
-  console.log(token);
   const handleLogout = () => {
     // Remove the "token" cookie
     Cookies.remove('token');
