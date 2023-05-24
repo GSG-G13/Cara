@@ -3,6 +3,7 @@ import Cookies from 'js-cookie';
 
 const UserMenu = () => {
   const isLoggedIn = Cookies.get('token') !== undefined;
+
   const handleLogout = () => {
     Cookies.remove('token');
 
@@ -12,7 +13,7 @@ const UserMenu = () => {
 
   return (
     <>
-      {isLoggedIn ? (
+      {token ? (
         <li>
           <NavLink
             to="/logout"
