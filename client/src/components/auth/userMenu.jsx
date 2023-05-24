@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
 const UserMenu = () => {
-  const isLoggedIn = Cookies.get('token') !== undefined;
+  const token = Cookies.get('token') !== undefined;
 
   const handleLogout = () => {
     Cookies.remove('token');

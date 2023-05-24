@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import FilterComponent from './filter';
+import Loader from '../loader';
 
 const ProductComponent = () => {
   const [products, setProducts] = useState([]);
@@ -23,35 +24,36 @@ const ProductComponent = () => {
         });
         const data = response.data.data;
         setProducts(data);
-
-
       } catch (error) {
         console.error(error);
       }
     }
-
     fetchFilteredProducts();
   }, [filter, currentPage]);
+
+  async function addToCart(product_id) {
+    try {
+      await axios({
+        method: 'post',
+        url: '/api/v1/cart/new',
+        data: {
+          product_id,
+          counts: 1,
+        },
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
-
   const renderProducts = () => {
     if (!products || products.length === 0) {
-
-      return (
-        
-        <section className="dots-container">
-          <div className="dot"></div>
-          <div className="dot"></div>
-          <div className="dot"></div>
-          <div className="dot"></div>
-          <div className="dot"></div>
-        </section>
-      );
+      return <Loader />;
     }
-
     return (
       <div className="product-container">
         {products.map((product) => (
@@ -72,33 +74,23 @@ const ProductComponent = () => {
                 <h4>${product.price}</h4>
               </div>
             </Link>
-            <Link to="#">
-              <i className="fa-solid fa-shopping-cart cart"></i>
-            </Link>
+            <i
+              className="fa-solid fa-shopping-cart cart"
+              onClick={() => addToCart(product.id)}
+            ></i>
           </div>
         ))}
       </div>
     );
   };
 
-  //const totalPages = Math.ceil(products.length / productsPerPage);
   const renderPaginationLinks = () => {
     if (!products || products.length === 0) {
-      
-      return (
-        
-        <section className="dots-container">
-          <div className="dot"></div>
-          <div className="dot"></div>
-          <div className="dot"></div>
-          <div className="dot"></div>
-          <div className="dot"></div>
-        </section>
-      );
+      return <Loader />;
     }
     const totalPages = Math.ceil(products[0].total_products / productsPerPage);
     const paginationLinks = [];
-  
+
     for (let i = 1; i <= totalPages; i++) {
       paginationLinks.push(
         <a
@@ -111,10 +103,9 @@ const ProductComponent = () => {
         </a>
       );
     }
-  
+
     return paginationLinks;
   };
-  
 
   return (
     <>

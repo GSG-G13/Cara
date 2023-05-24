@@ -44,8 +44,6 @@ function getProductsQuery({ category, price, search, page, limit }) {
       OFFSET $${valuesArr.length + 2}`,
     values: [...valuesArr, limit, offset],
   };
-  
-  
   return dbConnection.query(sql);
 }
 
