@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import FilterComponent from './filter';
+import Loader from '../loader';
 
 const ProductComponent = () => {
   const [products, setProducts] = useState([]);
@@ -74,17 +75,8 @@ const ProductComponent = () => {
   // Render the products
   const renderProducts = () => {
     if (!currentProducts || currentProducts.length === 0) {
-      return (
-        <section className="dots-container">
-          <div className="dot"></div>
-          <div className="dot"></div>
-          <div className="dot"></div>
-          <div className="dot"></div>
-          <div className="dot"></div>
-        </section>
-      );
+      return <Loader />;
     }
-
     return (
       <div className="product-container">
         {currentProducts.map((product) => (
@@ -105,12 +97,10 @@ const ProductComponent = () => {
                 <h4>${product.price}</h4>
               </div>
             </Link>
-            {/* <Link to="#"> */}
             <i
               className="fa-solid fa-shopping-cart cart"
               onClick={() => addToCart(product.id)}
             ></i>
-            {/* </Link> */}
           </div>
         ))}
       </div>
