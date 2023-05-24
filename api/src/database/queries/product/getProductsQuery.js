@@ -1,6 +1,6 @@
 const dbConnection = require('../../config/connection');
 
-function getProductsQuery({ category, price, search }) {
+function getProductsQuery({ category, price, search, page, limit }) {
   const valuesArr = [];
   const conditions = [];
 
@@ -17,13 +17,12 @@ function getProductsQuery({ category, price, search }) {
   }
 
   if (search !== '') {
-    conditions.push(
-      `products.name ILIKE '%' || $${valuesArr.length + 1} || '%'`,
-    );
+    conditions.push(`products.name ILIKE '%' || $${valuesArr.length + 1} || '%'`);
     valuesArr.push(search);
   }
 
   const conditionsString = conditions.length > 0 ? `WHERE ${conditions.join(' AND ')}` : '';
+  const offset = (page - 1) * limit;
 
   const sql = {
     text: `SELECT 
@@ -36,12 +35,18 @@ function getProductsQuery({ category, price, search }) {
       products.isMainProduct,
       products.isMainPage,
       products.isNewArrival,
-      categories.name as category
+      COUNT(*) OVER() AS total_products,
+      categories.name AS category
       FROM products
       JOIN categories ON products.category_id = categories.id
-      ${conditionsString}`,
-    values: valuesArr,
+      ${conditionsString}
+      LIMIT $${valuesArr.length + 1}
+      OFFSET $${valuesArr.length + 2}`,
+    values: [...valuesArr, limit, offset],
   };
+  
+  
   return dbConnection.query(sql);
 }
+
 module.exports = getProductsQuery;

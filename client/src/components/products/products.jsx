@@ -7,7 +7,7 @@ const ProductComponent = () => {
   const [products, setProducts] = useState([]);
   const [filter, setFilter] = useState({ category: '', price: '', search: '' });
   const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 12;
+  const productsPerPage = 8;
 
   useEffect(() => {
     async function fetchFilteredProducts() {
@@ -17,64 +17,31 @@ const ProductComponent = () => {
             category: filter.category,
             price: filter.price,
             search: filter.search,
+            page: currentPage,
+            limit: productsPerPage,
           },
         });
         const data = response.data.data;
         setProducts(data);
-        setCurrentPage(1);
+
+
       } catch (error) {
         console.error(error);
       }
     }
+
     fetchFilteredProducts();
-  }, [filter]);
-
-  async function addToCart(product_id) {
-    try {
-      await axios({
-        method: 'post',
-        url: '/api/v1/cart/new',
-        data: {
-          product_id,
-          counts: 1,
-        },
-      });
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  const totalPages = Math.ceil(products.length / productsPerPage);
-  const startIndex = (currentPage - 1) * productsPerPage;
-  const endIndex = startIndex + productsPerPage;
-  const currentProducts = products.slice(startIndex, endIndex);
+  }, [filter, currentPage]);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
 
-  const renderPaginationLinks = () => {
-    const paginationLinks = [];
-    for (let i = 1; i <= totalPages; i++) {
-      paginationLinks.push(
-        <a
-          key={i}
-          href="#"
-          onClick={() => handlePageChange(i)}
-          className={currentPage === i ? 'active' : ''}
-        >
-          {i}
-        </a>
-      );
-    }
-
-    return paginationLinks;
-  };
-
-  // Render the products
   const renderProducts = () => {
-    if (!currentProducts || currentProducts.length === 0) {
+    if (!products || products.length === 0) {
+
       return (
+        
         <section className="dots-container">
           <div className="dot"></div>
           <div className="dot"></div>
@@ -87,7 +54,7 @@ const ProductComponent = () => {
 
     return (
       <div className="product-container">
-        {currentProducts.map((product) => (
+        {products.map((product) => (
           <div className="product" key={product.id}>
             <Link to={'/product/' + product.id}>
               <img src={product.image} alt={product.name} />
@@ -105,17 +72,49 @@ const ProductComponent = () => {
                 <h4>${product.price}</h4>
               </div>
             </Link>
-            {/* <Link to="#"> */}
-            <i
-              className="fa-solid fa-shopping-cart cart"
-              onClick={() => addToCart(product.id)}
-            ></i>
-            {/* </Link> */}
+            <Link to="#">
+              <i className="fa-solid fa-shopping-cart cart"></i>
+            </Link>
           </div>
         ))}
       </div>
     );
   };
+
+  //const totalPages = Math.ceil(products.length / productsPerPage);
+  const renderPaginationLinks = () => {
+    if (!products || products.length === 0) {
+      
+      return (
+        
+        <section className="dots-container">
+          <div className="dot"></div>
+          <div className="dot"></div>
+          <div className="dot"></div>
+          <div className="dot"></div>
+          <div className="dot"></div>
+        </section>
+      );
+    }
+    const totalPages = Math.ceil(products[0].total_products / productsPerPage);
+    const paginationLinks = [];
+  
+    for (let i = 1; i <= totalPages; i++) {
+      paginationLinks.push(
+        <a
+          key={i}
+          href="#"
+          onClick={() => handlePageChange(i)}
+          className={currentPage === i ? 'active' : ''}
+        >
+          {i}
+        </a>
+      );
+    }
+  
+    return paginationLinks;
+  };
+  
 
   return (
     <>

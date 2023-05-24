@@ -2,15 +2,12 @@ import { NavLink } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
 const UserMenu = () => {
-  // Check if user is logged in based on token presence in cookies
-  const token = Cookies.get('token');
+  const isLoggedIn = Cookies.get('token') !== undefined;
+
   const handleLogout = () => {
-    // Remove the "token" cookie
     Cookies.remove('token');
 
-    // Perform any additional logout actions if needed
 
-    // Reload the page or redirect to the desired location
     window.location.reload();
   };
 
