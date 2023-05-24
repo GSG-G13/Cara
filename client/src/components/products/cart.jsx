@@ -49,7 +49,7 @@ const CartComponent = () => {
             <option>Large</option>
           </select>
           <br />
-          <input type="number" value="1" />
+          <input type="number" min={1} max={30} />
         </div>
       </section>
     ))
