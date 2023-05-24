@@ -57,11 +57,15 @@ const CartComponent = () => {
             <option>Large</option>
           </select>
           <br />
+<<<<<<< HEAD
           <input
             type="number"
             onChange={() => handleCountChange(product.id)}
             value={count}
           />
+=======
+          <input type="number" min={1} max={100000} />
+>>>>>>> bba3bb01350730d0bc83aed8d0a34cb778b05b7f
         </div>
       </section>
     ))
