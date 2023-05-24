@@ -5,6 +5,14 @@ import { Link } from 'react-router-dom';
 
 const CartComponent = () => {
   const [products, setProduct] = useState('');
+  const [count, setCount] = useState(1);
+
+  const handleCountChange = (id, e) => {
+    setCount(e.target.value);
+    const response = axios.post(`/cart/${id}`);
+    console.log(response);
+  };
+
   useEffect(() => {
     async function fetchMyAPI() {
       let response = await axios.get('api/v1/cart');
@@ -49,7 +57,15 @@ const CartComponent = () => {
             <option>Large</option>
           </select>
           <br />
+<<<<<<< HEAD
+          <input
+            type="number"
+            onChange={() => handleCountChange(product.id)}
+            value={count}
+          />
+=======
           <input type="number" min={1} max={100000} />
+>>>>>>> bba3bb01350730d0bc83aed8d0a34cb778b05b7f
         </div>
       </section>
     ))
