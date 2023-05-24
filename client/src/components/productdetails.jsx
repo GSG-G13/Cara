@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
@@ -16,6 +16,22 @@ const ProductDetails = () => {
     fetchProductDetails();
   }, [id]);
 
+  async function addToCart(product_id) {
+    const count = document.getElementById('count').value;
+    try {
+      await axios({
+        method: 'post',
+        url: '/api/v1/cart/new',
+        data: {
+          product_id,
+          counts: count,
+        },
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   if (!products) {
     return <div>Loading...</div>;
   }
@@ -27,16 +43,32 @@ const ProductDetails = () => {
 
         <div className="small-img-group">
           <div className="small-img-col">
-            <img src="../img/products/f1.jpg" width="100%" className="small-img" />
+            <img
+              src="../img/products/f1.jpg"
+              width="100%"
+              className="small-img"
+            />
           </div>
           <div className="small-img-col">
-            <img src="../img/products/f2.jpg" width="100%" className="small-img" />
+            <img
+              src="../img/products/f2.jpg"
+              width="100%"
+              className="small-img"
+            />
           </div>
           <div className="small-img-col">
-            <img src="../img/products/f3.jpg" width="100%" className="small-img" />
+            <img
+              src="../img/products/f3.jpg"
+              width="100%"
+              className="small-img"
+            />
           </div>
           <div className="small-img-col">
-            <img src="../img/products/f4.jpg" width="100%" className="small-img" />
+            <img
+              src="../img/products/f4.jpg"
+              width="100%"
+              className="small-img"
+            />
           </div>
         </div>
       </div>
@@ -52,8 +84,10 @@ const ProductDetails = () => {
           <option>Large</option>
         </select>
         <br />
-        <input type="number" value="1" />
-        <button className="normal">Add To Cart</button>
+        <input id="count" type="number" defaultValue={1} min={1} />
+        <button className="normal" onClick={() => addToCart(products.data.id)}>
+          Add To Cart
+        </button>
         <h4>Product Details</h4>
         <span>{products.data.description}.</span>
       </div>

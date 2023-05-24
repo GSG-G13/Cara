@@ -3,73 +3,70 @@ import axios from 'axios';
 import { Outlet } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-const CartComponent = () => {
-  const [products, setProduct] = useState('');
-  const [count, setCount] = useState(1);
+// eslint-disable-next-line react/prop-types
+const CartProduct = ({ product }) => {
+  const [count, setCount] = useState(product.counts || 0);
 
-  const handleCountChange = (id, e) => {
+  const handleCountChange = async (e) => {
     setCount(e.target.value);
-    const response = axios.post(`/cart/${id}`);
+    const response = await axios.patch(`api/v1/cart/${product.cart_id}`, {
+      count: e.target.value,
+    });
     console.log(response);
   };
 
+  return (
+    <section
+      id="prodetails"
+      className="section-p1"
+      style={{ borderBottom: '2px solid #ccc' }}
+    >
+      <div className="single-pro-image">
+        <img src={product.image} alt="Product Image" style={{ width: '50%' }} />
+      </div>
+      <div className="single-pro-details">
+        <h4>{product.name}</h4>
+        <h2>{product.price}</h2>
+        <select>
+          <option>Select Size</option>
+          <option>XL</option>
+          <option>XXL</option>
+          <option>Small</option>
+          <option>Large</option>
+        </select>
+        <br />
+        <input type="number" onChange={handleCountChange} value={count} />
+      </div>
+    </section>
+  );
+};
+
+const Loader = () => (
+  <section className="dots-container">
+    <div className="dot"></div>
+    <div className="dot"></div>
+    <div className="dot"></div>
+    <div className="dot"></div>
+    <div className="dot"></div>
+  </section>
+);
+
+const CartComponent = () => {
+  const [products, setProduct] = useState([]);
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     async function fetchMyAPI() {
+      setLoading(true);
       let response = await axios.get('api/v1/cart');
+      setLoading(false);
+
       response = await response.data.data;
       setProduct(response);
     }
     fetchMyAPI();
   }, []);
 
-  const productsDiv = !products ? (
-    <section className="dots-container">
-      <div className="dot"></div>
-      <div className="dot"></div>
-      <div className="dot"></div>
-      <div className="dot"></div>
-      <div className="dot"></div>
-    </section>
-  ) : (
-    products.map((product) => (
-      <section
-        id="prodetails"
-        className="section-p1"
-        key={product.id}
-        style={{ borderBottom: '2px solid #ccc' }}
-      >
-        <div className="single-pro-image">
-          <img
-            src={product.image}
-            alt="Product Image"
-            style={{ width: '50%' }}
-          />
-        </div>
-
-        <div className="single-pro-details">
-          <h4>{product.name}</h4>
-          <h2>{product.price}</h2>
-          <select>
-            <option>Select Size</option>
-            <option>XL</option>
-            <option>XXL</option>
-            <option>Small</option>
-            <option>Large</option>
-          </select>
-          <br />
-<<<<<<< HEAD
-          <input
-            type="number"
-            onChange={() => handleCountChange(product.id)}
-            value={count}
-          />
-=======
-          <input type="number" min={1} max={100000} />
->>>>>>> bba3bb01350730d0bc83aed8d0a34cb778b05b7f
-        </div>
-      </section>
-    ))
-  );
   return (
     <>
       <section id="page-header">
@@ -80,7 +77,12 @@ const CartComponent = () => {
       <Outlet />
 
       <section id="product1" className="section-p1">
-        <div className="product-container">{productsDiv}</div>
+        <div className="product-container">
+          {loading && <Loader />}
+          {products.map((product) => (
+            <CartProduct key={product.product_id} product={product} />
+          ))}
+        </div>
       </section>
     </>
   );

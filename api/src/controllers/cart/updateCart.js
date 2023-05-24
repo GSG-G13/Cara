@@ -1,4 +1,4 @@
-const updateCartQuery = require('../../database/queries/auth');
+const updateCartQuery = require("../../database/queries/cart/updateCart");
 
 const updateCart = (req, res, next) => {
   const { id } = req.params;

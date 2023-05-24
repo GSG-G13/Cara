@@ -1,6 +1,7 @@
 const dbConnection = require('../../config/connection');
 
-const getCartQuery = (userId) => dbConnection.query(
+const getCartQuery = (userId) =>
+  dbConnection.query(
     `SELECT 
       p.id AS product_id,
       p.name,
@@ -12,16 +13,15 @@ const getCartQuery = (userId) => dbConnection.query(
       p.isMainPage,
       p.isNewArrival,
       c.id AS cart_id, 
-      c.user_id
+      c.user_id,
+      c.counts as counts
     FROM products AS p
     JOIN carts AS c ON p.id = c.product_id  
     WHERE c.user_id = $1`,
     [userId]
   );
 
-
-
- /* const getCartQuery = (userId) => dbConnection.query(
+/* const getCartQuery = (userId) => dbConnection.query(
     `Select 
     products.id,
     products.name,
@@ -37,6 +37,4 @@ const getCartQuery = (userId) => dbConnection.query(
   );
 */
 
-  
-  module.exports = getCartQuery;
-  
+module.exports = getCartQuery;
