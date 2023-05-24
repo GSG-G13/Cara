@@ -18,10 +18,14 @@ const signup = (req, res, next) => {
     .then((hash) => signupQuery({ username, email, password: hash }))
     .then((newUserData) => {
       req.user = newUserData.rows[0];
-      return generateToken({ username: req.user.username, id: req.user.id });
+      return generateToken({
+        username: req.user.username,
+        image: req.user.image,
+        id: req.user.id,
+      });
     })
     .then((token) => {
-      res.cookie('token', token, { httpOnly: true }).json({
+      res.cookie('token', token).json({
         error: false,
         data: { massage: 'user created successfully', user: req.user },
       });

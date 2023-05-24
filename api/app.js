@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 require('env2')('.env');
 const router = require('./src/routes');
 const serverError = require('./src/Error/serverError');
+const morgan = require('morgan');
 
 const app = express();
 app.disabled('x-powered-by');
@@ -14,7 +15,7 @@ app.use(express.urlencoded({ extended: false }));
 // app.use(express.static(join(__dirname, '..', 'public')));
 app.use(compression());
 app.use(cookieParser());
-
+app.use(morgan('dev'));
 app.use(router);
 app.use(serverError);
 module.exports = app;

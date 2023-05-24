@@ -2,8 +2,10 @@
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import './auth.css';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Signup = () => {
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       username: '',
@@ -33,6 +35,7 @@ const Signup = () => {
         .then((data) => {
           console.log(data);
           resetForm('');
+          navigate(-1);
         })
         .catch((error) => {
           console.error(error);
@@ -49,7 +52,7 @@ const Signup = () => {
                 src="https://drive.google.com/u/0/uc?id=16U__U5dJdaTfNGobB_OpwAJ73vM50rPV&export=download"
                 alt=""
               />
-              Return home
+              <Link to="/">Return home</Link>
             </a>
           </div>
           <div className="contact">

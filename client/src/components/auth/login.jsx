@@ -2,8 +2,10 @@
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import './auth.css';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -25,14 +27,17 @@ const Login = () => {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
+          // console.log(data);
           resetForm('');
+          navigate(-1);
         })
         .catch((error) => {
           console.error(error);
         });
     },
   });
+
+  console.log('formik', formik);
   return (
     <section className="login">
       <div className="login_box">
@@ -43,7 +48,7 @@ const Login = () => {
                 src="https://drive.google.com/u/0/uc?id=16U__U5dJdaTfNGobB_OpwAJ73vM50rPV&export=download"
                 alt=""
               />
-              Return home
+              <Link to="/">Return home</Link>
             </a>
           </div>
           <div className="contact">
