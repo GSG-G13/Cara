@@ -23,8 +23,8 @@ const login = (req, res, next) => {
       if (!match) {
         throw new CustomError('email or password is incorrect', 400);
       }
-      const { email, id } = req.user;
-      return generateToken({ email, id });
+      const { username, image, id } = req.user;
+      return generateToken({ username, image, id });
     })
     .then((token) => {
       res
