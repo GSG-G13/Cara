@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Outlet } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import AddToCartButton from './addToCart';
 
 const Featured  = () => {
   const [products, setProduct] = useState('');
@@ -34,9 +35,7 @@ const Featured  = () => {
             <h4>${product.price}</h4>
           </div>
         </Link>
-        <Link to="#">
-          <i className="fa-solid fa-shopping-cart cart"></i>
-        </Link>
+        <AddToCartButton productId={product.id} />
       </div>
     ))
   );

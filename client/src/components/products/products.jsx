@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import FilterComponent from './filter';
 import Loader from '../loader';
+import AddToCartButton from './addToCart';
 
 const ProductComponent = () => {
   const [products, setProducts] = useState([]);
@@ -74,11 +75,8 @@ const ProductComponent = () => {
                 <h4>${product.price}</h4>
               </div>
             </Link>
-            <i
-              className="fa-solid fa-shopping-cart cart"
-              onClick={() => addToCart(product.id)}
-            ></i>
-          </div>
+            <AddToCartButton productId={product.id} />          
+            </div>
         ))}
       </div>
     );
