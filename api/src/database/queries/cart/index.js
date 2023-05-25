@@ -1,5 +1,5 @@
 const addToCartQuery = require('./addToCart');
-const deleteFromQuery = require('./deleteFromCart');
+const deleteFromCartQuery = require('./deleteFromCart');
 const updateCart = require('./updateCart');
 
-module.exports = { addToCartQuery, deleteFromQuery, updateCart };
+module.exports = { addToCartQuery, deleteFromCartQuery, updateCart };

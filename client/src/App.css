@@ -933,6 +933,7 @@ justify-content: space-between;
   #prodetails .single-pro-details {
     width: 100%;
     padding-top: 0;
+    
   }
 }
 .filter{
@@ -995,5 +996,6 @@ justify-content: space-between;
 }
 .productName{
   padding: 10px 0;
-
 }
+
+

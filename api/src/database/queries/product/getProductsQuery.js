@@ -17,11 +17,14 @@ function getProductsQuery({ category, price, search, page, limit }) {
   }
 
   if (search !== '') {
-    conditions.push(`products.name ILIKE '%' || $${valuesArr.length + 1} || '%'`);
+    conditions.push(
+      `products.name ILIKE '%' || $${valuesArr.length + 1} || '%'`
+    );
     valuesArr.push(search);
   }
 
-  const conditionsString = conditions.length > 0 ? `WHERE ${conditions.join(' AND ')}` : '';
+  const conditionsString =
+    conditions.length > 0 ? `WHERE ${conditions.join(' AND ')}` : '';
   const offset = (page - 1) * limit;
 
   const sql = {
@@ -40,10 +43,13 @@ function getProductsQuery({ category, price, search, page, limit }) {
       FROM products
       JOIN categories ON products.category_id = categories.id
       ${conditionsString}
+      order by products.id
       LIMIT $${valuesArr.length + 1}
-      OFFSET $${valuesArr.length + 2}`,
+      OFFSET $${valuesArr.length + 2}
+     `,
     values: [...valuesArr, limit, offset],
   };
+  console.log(sql);
   return dbConnection.query(sql);
 }
 

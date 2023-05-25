@@ -2,7 +2,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 
-const CartProduct = ({ product }) => {
+const CartProduct = ({ product, products, setProduct }) => {
   const [count, setCount] = useState(product.counts || 0);
 
   const handleCountChange = async (e) => {
@@ -10,7 +10,15 @@ const CartProduct = ({ product }) => {
     const response = await axios.patch(`api/v1/cart/${product.cart_id}`, {
       count: e.target.value,
     });
-    console.log(response);
+  };
+  const handleDelete = async () => {
+    const response = await axios.delete(`api/v1/cart/${product.cart_id}`);
+    if (response.status === 200) {
+      const newProducts = products.filter((value) => {
+        return value.cart_id !== response.data.id;
+      });
+      setProduct(newProducts);
+    }
   };
 
   return (
@@ -25,15 +33,9 @@ const CartProduct = ({ product }) => {
       <div className="single-pro-details">
         <h4>{product.name}</h4>
         <h2>{product.price}</h2>
-        <select>
-          <option>Select Size</option>
-          <option>XL</option>
-          <option>XXL</option>
-          <option>Small</option>
-          <option>Large</option>
-        </select>
         <br />
         <input type="number" onChange={handleCountChange} value={count} />
+        <button onClick={handleDelete}>Delete from cart</button>
       </div>
     </section>
   );
