@@ -30,7 +30,12 @@ const CartComponent = () => {
         <div className="product-container">
           {loading && <Loader />}
           {products.map((product) => (
-            <CartProduct key={product.product_id} product={product} />
+            <CartProduct
+              key={product.product_id}
+              product={product}
+              products={products}
+              setProduct={setProduct}
+            />
           ))}
         </div>
       </section>
