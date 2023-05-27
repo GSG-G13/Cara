@@ -13,12 +13,13 @@ app.set('port', process.env.PORT || 4000);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(join(__dirname, '..', 'client', 'dist')));
-app.get('/', (req, res) => {
-  res.sendFile(join(__dirname, '..', 'client', 'dist', 'index.html'));
-});
+
 app.use(compression());
 app.use(cookieParser());
 app.use(morgan('dev'));
 app.use(router);
+app.get('*', (req, res) => {
+  res.sendFile(join(__dirname, '..', 'client', 'dist', 'index.html'));
+});
 app.use(serverError);
 module.exports = app;
