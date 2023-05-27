@@ -1,0 +1,21 @@
+{
+  "name": "e-commerce-team-6",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":"cd ./client && npm run build && cd ../api && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GSG-G13/E-commerce-Team-6.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GSG-G13/E-commerce-Team-6/issues"
+  },
+  "homepage": "https://github.com/GSG-G13/E-commerce-Team-6#readme"
+}
