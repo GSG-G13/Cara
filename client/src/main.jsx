@@ -9,7 +9,7 @@ import CartComponent from './components/products/cart.jsx';
 import Login from './components/auth/login.jsx';
 import Signup from './components/auth/signup.jsx';
 
-import './app.css';
+import './App.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 const router = createBrowserRouter([
   {
@@ -32,18 +32,17 @@ const router = createBrowserRouter([
         path: '/cart',
         element: <CartComponent />,
       },
-      
-     ],
-   },
-   {
+    ],
+  },
+  {
     path: '/login',
     element: <Login />,
-  },  
+  },
   {
-     path: '/signup',
-     element: <Signup />,
-   }
- ]);
+    path: '/signup',
+    element: <Signup />,
+  },
+]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

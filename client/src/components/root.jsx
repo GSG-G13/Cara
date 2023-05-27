@@ -7,7 +7,7 @@ const Root = () => {
     <>
       <section id="header">
         <Link to="/">
-          <img src="../img/logo.png" alt="Logo" />
+          <img src="https://i.imgur.com/SlDYuAA.png" alt="Logo" />
         </Link>
         <div>
           <ul id="navbar">
