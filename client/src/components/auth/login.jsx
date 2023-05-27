@@ -84,8 +84,8 @@ const Login = () => {
         </div>
         <div className="right">
           <div className="right-text">
-            <h2>LONYX</h2>
-            <h5>A UX BASED CREATIVE AGENCY</h5>
+            <h2>CARA</h2>
+            <h5>ALL IN ONE PLACE</h5>
           </div>
           <div className="right-inductor">
             <img
