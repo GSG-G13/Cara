@@ -43,5 +43,13 @@ After this you can run the project locally:
   - <code>cd api</code>
   - <code>npm run dev</code>
     TIP: Run both in split terminal so that you can see both ends running
+    
+ ## 🤝Contributors:
+
+[Eman Alabsi](https://github.com/Emanalabsi)
+
+[Haitham Abu Lamdi](https://github.com/haitham-akram)
+
+[Abdullah Abu Jazzar](https://github.com/AbdallahAbujazar)
 
 ### Don't forget to give this repo a ⭐ if you like this repo and want to appreciate our efforts
