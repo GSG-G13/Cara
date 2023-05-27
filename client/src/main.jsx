@@ -9,7 +9,7 @@ import CartComponent from './components/products/cart.jsx';
 import Login from './components/auth/login.jsx';
 import Signup from './components/auth/signup.jsx';
 
-import './app.css';
+import './App.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 const router = createBrowserRouter([
   {
