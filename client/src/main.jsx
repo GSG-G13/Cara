@@ -8,7 +8,7 @@ import CartComponent from './components/products/cart.jsx';
 
 import Login from './components/auth/login.jsx';
 import Signup from './components/auth/signup.jsx';
-import ErrorPage from "./error-page";
+import ErrorPage from "./errorpage.jsx";
 
 import './App.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
@@ -17,7 +17,6 @@ const router = createBrowserRouter([
     path: '/',
     element: <Root />,
     errorElement: <ErrorPage />,
-
     children: [
       {
         path: '/',
