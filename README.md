@@ -1,4 +1,7 @@
 # Welcome to Cara!🤩
+
+ Cara is an ecommerce website, Here where you can Browse & discover millions of products that satisfy your needs.
+
 ![image](https://github.com/GSG-G13/E-commerce-Team-6/assets/90457093/3f4fbde9-c0a9-4a24-bebd-8ae70210e90f)
 
 <br/>
